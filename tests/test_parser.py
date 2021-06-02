@@ -624,3 +624,7 @@ class TestUrlParser(unittest.TestCase):
     def test_parser_url_10(self):
         with self.assertRaisesRegex(TypeError, 'a bytes-like object'):
             self.parse('dsf://aaa')
+
+    def test_parser_url_11(self):
+        LARGE_URL = b'/' + b'a' * (2**16-1)
+        self.assertEqual(self.parse(LARGE_URL), (LARGE_URL))
